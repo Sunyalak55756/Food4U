@@ -2,7 +2,7 @@ import React from 'react'
 import HeaderMenu from './HeaderMenu'
 import {
   Container,
-  Header
+  Card
 } from 'semantic-ui-react'
 
 const Foods = () => {
@@ -10,11 +10,20 @@ const Foods = () => {
     <div>
       <HeaderMenu />
       <Container text style={{ marginTop: '7em' }}>
-        <Header as='h1'>Semantic UI React Fixed Template</Header>
-        <p>This is a basic fixed menu template using fixed size containers.</p>
-        <p>
-          A text container is used for the main container, which is useful for single column layouts.
-      </p>
+        <Card.Group itemsPerRow={4}>
+          <Card color='red' image={src} />
+          <Card color='orange' image={src} />
+          <Card color='yellow' image={src} />
+          <Card color='olive' image={src} />
+          <Card color='green' image={src} />
+          <Card color='teal' image={src} />
+          <Card color='blue' image={src} />
+          <Card color='violet' image={src} />
+          <Card color='purple' image={src} />
+          <Card color='pink' image={src} />
+          <Card color='brown' image={src} />
+          <Card color='grey' image={src} />
+        </Card.Group>
       </Container>
     </div>
   )
