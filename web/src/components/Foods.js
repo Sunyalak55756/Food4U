@@ -1,9 +1,11 @@
 import React from 'react'
 
-export default function Foods() {
+const Foods = () => {
   return (
     <div>
 
     </div>
   )
 }
+
+export default Foods
