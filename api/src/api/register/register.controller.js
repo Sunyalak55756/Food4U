@@ -1,23 +1,19 @@
 import express from 'express'
 import bcrypt from 'bcryptjs'
-import conf from '../../../config'
 import log4js from 'log4js'
-import codeStatus from '../../../config/codeStatus'
+import conf from '../../config'
+import codeStatus from '../../config/codeStatus'
+import signin from '../../config/signin'
 import { createUser } from './register.service'
-import { userSchema } from './register.schema'
-import Ajv from 'ajv'
 const logErr = log4js.getLogger('error')
 const router = express.Router()
-import signin from '../../../config/signin'
 
 const Register = async (req, res, next) => {
   try {
-    var ajv = new Ajv();
-    var valid = await ajv.validate(userSchema, req.body);
-    if (!valid)
-      return res.json({ status: codeStatus.Validated, message: ajv.errors[0].message })
-
-    const { password } = req.body
+    const { password, user_name } = req.body
+    if (!user_name && !password) {
+      return res.json({ status: codeStatus.Validated })
+    }
     const hash = await bcrypt.hash(password, conf.saltBcrypt).then(hash => hash)
     const user = await createUser({
       ...req.body,
@@ -31,9 +27,8 @@ const Register = async (req, res, next) => {
       status: codeStatus.OK,
       token,
       user: {
-        user_name: user.user_name,
-        balance: user.balance.balance,
-        setting: user.setting
+        id: user.id,
+        user_name: user.user_name
       }
     })
 

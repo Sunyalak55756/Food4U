@@ -15,7 +15,7 @@ export default (sequelize, DataTypes) => {
   })
 
   lists.associate = function (models) {
-    users.belongsTo(models.status_users, {
+    lists.belongsTo(models.foods, {
       foreignKey: 'foods_id',
       sourceKey: 'id'
     })

@@ -1,4 +1,4 @@
-import db from '../../../model'
+import db from '../../model'
 const User = db.users
 
 export const createUser = async (data) => {
