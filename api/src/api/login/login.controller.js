@@ -13,7 +13,6 @@ const Login = async (req, res, next) => {
     const user = await cheackLoginUser(user_name)
     if (user) {
       const loginStatus = bcrypt.compareSync(password, user.password)
-      console.log(loginStatus)
       if (loginStatus) {
         const token = signin({ id: user.id, user_name: user.user_name })
         return res.json({

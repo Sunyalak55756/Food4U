@@ -6,7 +6,7 @@ export default (req, res, next) => {
   let token = req.headers['authorization']
   if (token) {
     if (token.startsWith('Bearer ')) {
-      token = token.slice(8, token.length)
+      token = token.slice(7, token.length)
     }
     jwt.verify(token, conf.secretKeyToken, (err, decoded) => {
       if (err) {

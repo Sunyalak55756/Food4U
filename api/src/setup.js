@@ -7,6 +7,7 @@ const setupRoutes = function (app) {
   app.use(`/${conf.apiName}/register`, require('./api/register/register.controller'))
   app.use(`/${conf.apiName}/login`, require('./api/login/login.controller'))
   app.use(`/${conf.apiName}/checktoken-me-expiration`, decodedToken, require('./api/checkTokenMeExpiration/checktokenMeExpiration.controller'))
+  app.use(`/${conf.apiName}/foods`, decodedToken, require('./api/foods/foods.controller'))
 }
 const invalidRoute = (app) => {
   app.use((req, res, next) => {

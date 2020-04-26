@@ -1,12 +1,16 @@
 export default (sequelize, DataTypes) => {
   var foods = sequelize.define('foods', {
-    user_name: {
+    name: {
       type: DataTypes.STRING,
-      field: 'user_name'
+      field: 'name'
     },
-    password: {
+    price: {
       type: DataTypes.STRING,
-      field: 'password'
+      field: 'price'
+    },
+    img: {
+      type: DataTypes.STRING,
+      field: 'img'
     }
   }, {
     underscored: true,
