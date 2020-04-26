@@ -1,13 +1,13 @@
 import express from 'express'
 import log4js from 'log4js'
 import codeStatus from '../../config/codeStatus'
-import { allFood } from './foods.service'
+import { allFoods } from './foods.service'
 const logErr = log4js.getLogger('error')
 const router = express.Router()
 
 const Foods = async (req, res, next) => {
   try {
-    const foods = await allFood()
+    const foods = await allFoods()
     return res.json(foods)
   } catch (error) {
     console.log(error)
