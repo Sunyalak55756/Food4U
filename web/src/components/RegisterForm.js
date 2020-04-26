@@ -24,7 +24,7 @@ const RegisterForm = () => {
     }
   }, [loading])
   const onSubmit = () => {
-    if (confirmPassword === setConfirmPassword) {
+    if (password === confirmPassword) {
       executePost({
         data: {
           user_name: userName,
