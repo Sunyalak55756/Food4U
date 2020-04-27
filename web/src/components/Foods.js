@@ -1,33 +1,70 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import HeaderMenu from './HeaderMenu'
 import {
   Container,
   Card,
   Image,
   Button,
-  Header
+  Header,
+  Input
 } from 'semantic-ui-react'
-import useAxios from 'axios-hooks'
+import axios from 'axios'
 import { getToken } from '../utils'
 import './Foods.css'
 
 const Foods = () => {
-  const [{ data: foods, loading, error }] = useAxios({
-    url: 'http://localhost:5000/api/foods',
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'authorization': `Bearer ${getToken()}`
+  const [cart, setCart] = useState([])
+  const [foods, setFoods] = useState({})
+  const [user, setUser] = useState({})
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/foods',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${getToken()}`
+        }
+      }).then(res => setFoods(res.data))
+  }, [])
+  const _minus = (food) => {
+    if (!food.number) {
+      food.number = 0
+    } else {
+      food.number--
     }
-  })
+    setFoods([...foods, food])
+  }
+  const _plus = (food) => {
+    if (!food.number) {
+      food.number = 1
+    } else {
+      food.number++
+    }
+    setFoods([...foods, food])
+  }
+  const orderCart = (food) => {
+    const order = { ...food }
+    if (cart.find(ca => ca.id === order.id)) {
+      setCart([...cart, order])
+    } else {
+      setCart([...cart, order])
+    }
+    food.number = 0
+    setFoods([...foods, food])
+  }
   return (
     <div>
-      <HeaderMenu />
+      <HeaderMenu cart={cart} />
       <Container text style={{ marginTop: '7em', maxwidth: '100%' }}>
         <Header size='huge'>สั่งอาหาร</Header>
         <Card.Group itemsPerRow={4}>
           {foods && foods.length && foods.map((food) => <Card color='red'>
-            <Image src={require(`../assets/images/${food.img}`)} size='small' />
+            {(() => {
+              try {
+                return <Image src={require(`../assets/images/${food.img}`)} size='small' />
+              } catch (err) {
+                return <Image src={require(`../assets/images/image.png`)} size='small' />
+              }
+            })()}
             <div className='info-food'>
               <div className='name'>
                 {food.name}
@@ -36,7 +73,18 @@ const Foods = () => {
                 {food.price}
               </div>
             </div>
-            <Button color='blue'>ซื้อ</Button>
+            <div className='info-order'>
+              <div className='minus'>
+                <Button color='red' onClick={() => _minus(food)}>-</Button>
+              </div>
+              <div className='number'>
+                <Input value={food.number || 0} />
+              </div>
+              <div className='plus' onClick={() => _plus(food)}>
+                <Button color='green'>+</Button>
+              </div>
+            </div>
+            <Button onClick={() => orderCart(food)} color='blue'>ซื้อ</Button>
           </Card>)}
         </Card.Group>
       </Container>
