@@ -3,7 +3,7 @@ import 'semantic-ui-css/semantic.min.css'
 import RouteRoot from './route/routeRoot'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <RouteRoot />

@@ -1,0 +1,28 @@
+.ui.text.container {
+  max-width: unset !important;
+}
+
+
+.card img {
+  width: 100% !important;
+  height: 230px !important;
+}
+
+.info-food {
+  flex: 1;
+  display: flex;
+  padding: 12px;
+}
+
+.info-food .name {
+  flex: 0.8;
+  display: inline;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.info-food .price {
+  flex: 0.2;
+  text-align: right;
+}
