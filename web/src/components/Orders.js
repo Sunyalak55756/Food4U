@@ -16,7 +16,7 @@ const Orders = () => {
   const [orders, setOrders] = useState({})
   const [user, setUser] = useState({})
   useEffect(() => {
-    axios.get('http://localhost:5000/api/orders',
+    axios.get('http://f2fa71ae.ngrok.io/api/orders',
       {
         headers: {
           'Content-Type': 'application/json',

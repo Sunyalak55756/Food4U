@@ -16,7 +16,7 @@ const ModalCart = ({ cart }) => {
   const history = useHistory()
   const [localtion, setLocaltion] = useState('')
   const _onSubnmit = () => {
-    axios.post('http://localhost:5000/api/orders',
+    axios.post('http://f2fa71ae.ngrok.io/api/orders',
       {
         localtion: localtion,
         total_price: cart.map((item) => item.number * item.price).reduce((a, b) => a + b),
