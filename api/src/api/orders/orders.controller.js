@@ -7,8 +7,9 @@ const router = express.Router()
 
 const Orders = async (req, res, next) => {
   try {
-    const orders = await allOrders()
-    return res.json(foods)
+    const { id } = req.decodedToken
+    const orders = await allOrders(id)
+    return res.json(orders)
   } catch (error) {
     console.log(error)
     logErr.error(error)

@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
 import { removeToken } from '../utils'
-import ModelCart from './ModelCart'
+import ModalCart from './ModalCart'
 
 const HeaderMenu = ({ cart }) => {
   const history = useHistory()
@@ -27,7 +27,7 @@ const HeaderMenu = ({ cart }) => {
               <Icon name='shopping cart' size='small' />
               {cart.length && cart.map(n => n.number).reduce((a, b) => a + b, 0)}
             </Menu.Item>}>
-              <ModelCart cart={cart} />
+              <ModalCart cart={cart} />
             </Modal>
             <Menu.Item onClick={_logout} as='a'>ออกจากระบบ</Menu.Item>
           </Menu.Menu>

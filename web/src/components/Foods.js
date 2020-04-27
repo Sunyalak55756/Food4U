@@ -43,11 +43,7 @@ const Foods = () => {
   }
   const orderCart = (food) => {
     const order = { ...food }
-    if (cart.find(ca => ca.id === order.id)) {
-      setCart([...cart, order])
-    } else {
-      setCart([...cart, order])
-    }
+    setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price * order.number }])
     food.number = 0
     setFoods([...foods, food])
   }

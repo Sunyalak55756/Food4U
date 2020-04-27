@@ -4,9 +4,8 @@ import {
   Container,
   Card,
   Image,
-  Button,
   Header,
-  Input
+  Table
 } from 'semantic-ui-react'
 import axios from 'axios'
 import { getToken } from '../utils'
@@ -17,7 +16,7 @@ const Orders = () => {
   const [orders, setOrders] = useState({})
   const [user, setUser] = useState({})
   useEffect(() => {
-    axios.get('http://localhost:5000/api/oders',
+    axios.get('http://localhost:5000/api/orders',
       {
         headers: {
           'Content-Type': 'application/json',
@@ -30,30 +29,29 @@ const Orders = () => {
       <HeaderMenu cart={cart} />
       <Container text style={{ marginTop: '7em', maxwidth: '100%' }}>
         <Header size='huge'>รายการอาหารที่สั่ง</Header>
-        <Card.Group itemsPerRow={4}>
-          {orders && orders.length ?
-            <> {orders.map((order) => <Card color='red'>
-              {(() => {
-                try {
-                  return <Image src={require(`../assets/images/${order.img}`)} size='small' />
-                } catch (err) {
-                  return <Image src={require(`../assets/images/image.png`)} size='small' />
-                }
-              })()}
-              <div className='info-food'>
-                <div className='name'>
-                  {order.name}
-                </div>
-                <div className='price'>
-                  {order.price}
-                </div>
-              </div>
-            </Card>)}</>
-            : <>ไม่มีรายการอาหารที่สั่ง</>
-          }
-        </Card.Group>
-      </Container>
-    </div>
+        {orders && orders.length ?
+          <>{orders.map((order) => <Table basic='very'>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>หมายเลขการสั่งอาหาร: {order.id}</Table.Cell>
+                <Table.Cell>สถานที่จัดส่ง: {order.localtion}</Table.Cell>
+                <Table.Cell>ราคารวม: {order.total_price}</Table.Cell>
+              </Table.Row>
+              {order.lists && order.lists.map((list) =>
+                <Table.Row>
+                  <Table.Cell className='name'> - {list.food.name}</Table.Cell>
+                  <Table.Cell>{list.number}</Table.Cell>
+                  <Table.Cell>{list.price}</Table.Cell>
+                </Table.Row>
+              )}
+            </Table.Body>
+          </Table>
+          )}</>
+          : <>ไม่มีรายการอาหารที่สั่ง</>
+        }
+
+      </Container >
+    </div >
   )
 }
 

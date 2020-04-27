@@ -31,7 +31,6 @@ const Register = async (req, res, next) => {
         user_name: user.user_name
       }
     })
-
   } catch (error) {
     console.log(error)
     logErr.error(error)
