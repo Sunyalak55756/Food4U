@@ -19,12 +19,13 @@ const HeaderMenu = ({ cart }) => {
     <>
       <Menu fixed='top' inverted>
         <Container>
-          <Menu.Item as='a'>อาหาร</Menu.Item>
+          <Menu.Item onClick={() => history.push('/')}>อาหาร</Menu.Item>
+          <Menu.Item onClick={() => history.push('/orders')}>รายการอาหารที่สั่ง</Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item>name</Menu.Item>
             <Modal trigger={<Menu.Item>
               <Icon name='shopping cart' size='small' />
-              {cart.map(n => n.number).reduce((a, b) => a + b, 0)}
+              {cart.length && cart.map(n => n.number).reduce((a, b) => a + b, 0)}
             </Menu.Item>}>
               <ModelCart cart={cart} />
             </Modal>

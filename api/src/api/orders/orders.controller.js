@@ -1,7 +1,7 @@
 import express from 'express'
 import log4js from 'log4js'
 import codeStatus from '../../config/codeStatus'
-import { allFood, createOrders } from './orders.service'
+import { allOrders, createOrders } from './orders.service'
 const logErr = log4js.getLogger('error')
 const router = express.Router()
 
@@ -18,8 +18,10 @@ const Orders = async (req, res, next) => {
 
 const CreateOrders = async (req, res, next) => {
   try {
-    const foods = await createOrders()
-    return res.json(foods)
+    const { localtion, foods, total_price } = req.body
+    const { id } = req.decodedToken
+    const createFoods = await createOrders(id, localtion, total_price, foods)
+    return res.json(createFoods)
   } catch (error) {
     console.log(error)
     logErr.error(error)

@@ -13,6 +13,7 @@ const ModelCart = ({ cart }) => {
   const _onSubnmit = () => {
     console.log(localtion)
     console.log(cart)
+    history.push('/order')
   }
   return (
     <>

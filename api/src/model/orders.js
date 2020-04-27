@@ -7,6 +7,10 @@ export default (sequelize, DataTypes) => {
     localtion: {
       type: DataTypes.STRING,
       field: 'localtion'
+    },
+    users_id: {
+      type: DataTypes.STRING,
+      field: 'users_id'
     }
   }, {
     underscored: true,

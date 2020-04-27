@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2020 at 08:26 AM
+-- Generation Time: Apr 27, 2020 at 01:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -78,7 +78,7 @@ CREATE TABLE `lists` (
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `total_price` decimal(9,2) NOT NULL,
-  `localtion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`localtion`)),
+  `localtion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `users_id` int(11) NOT NULL
@@ -123,7 +123,6 @@ ALTER TABLE `lists`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `user_name_UNIQUE` (`total_price`),
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD KEY `fk_orders_users_idx` (`users_id`);
 

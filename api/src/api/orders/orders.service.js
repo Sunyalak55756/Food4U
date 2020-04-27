@@ -1,6 +1,17 @@
 import db from '../../model'
-const Foods = db.foods
+const Orders = db.orders
 
-export const allFood = async () => {
-  return await Foods.findAll().then(res => res).catch(err => err)
+export const allOrders = async () => {
+  return await Orders.findAll().then(res => res).catch(err => err)
+}
+
+export const createOrders = async (id, localtion, total_price, foods) => {
+  return await Orders.create({
+    localtion: localtion,
+    total_price: total_price,
+    users_id: id,
+    lists: [...foods]
+  }, {
+    include: ['lists']
+  })
 }
