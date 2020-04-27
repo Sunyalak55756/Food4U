@@ -11,7 +11,7 @@ const RegisterForm = () => {
   const [errorForm, setErrorForm] = useState('')
   const history = useHistory()
   const [
-    { data, loading, error }, executePost] = useAxios(
+    { data, loading }, executePost] = useAxios(
       {
         url: 'http://localhost:5000/api/register',
         method: 'POST'
