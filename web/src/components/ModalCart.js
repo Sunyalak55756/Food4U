@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom'
 import './ModalCart.css'
 import axios from 'axios'
 import { getToken } from '../utils'
+import conf from '../config'
 
 const ModalCart = ({ cart }) => {
   const history = useHistory()

@@ -11,6 +11,7 @@ import {
 import axios from 'axios'
 import { getToken } from '../utils'
 import './Foods.css'
+import conf from '../config'
 
 const Foods = () => {
   const [cart, setCart] = useState([])

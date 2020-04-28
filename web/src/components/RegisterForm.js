@@ -3,6 +3,7 @@ import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
 import { setToken } from '../utils'
 import useAxios from 'axios-hooks'
+import conf from '../config'
 
 const RegisterForm = () => {
   const [userName, setUserName] = useState('')
