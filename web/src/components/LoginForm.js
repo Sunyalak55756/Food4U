@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 import { Link, useHistory } from 'react-router-dom'
-import { setToken } from '../utils'
+import { setToken, setUser } from '../utils'
 import useAxios from 'axios-hooks'
 import conf from '../config'
 
@@ -18,6 +18,8 @@ const LoginForm = () => {
     )
   useEffect(() => {
     if (data?.status === 200) {
+      console.log(data.user)
+      setUser(JSON.stringify(data.user))
       setToken(data.token)
       history.push('/')
     }

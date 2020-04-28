@@ -44,16 +44,29 @@ const Foods = () => {
   }
   const orderCart = (food) => {
     const order = { ...food }
-    setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price * order.number }])
-    food.number = 0
-    setFoods([...foods, food])
+    if (order.number > 0) {
+      setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price * order.number }])
+      food.number = 0
+      setFoods([...foods, food])
+    }
   }
+  let itemsPerRow = 4
+  if (document.body.clientWidth > 991) {
+    itemsPerRow = 4
+  } else if (document.body.clientWidth < 992 && document.body.clientWidth > 600) {
+    itemsPerRow = 3
+  } else if (document.body.clientWidth < 601 && document.body.clientWidth > 350) {
+    itemsPerRow = 2
+  } else if (document.body.clientWidth < 351) {
+    itemsPerRow = 1
+  }
+  console.log(document.body.clientWidth)
   return (
     <div>
       <HeaderMenu cart={cart} />
       <Container text style={{ marginTop: '7em', maxwidth: '100%' }}>
         <Header size='huge'>สั่งอาหาร</Header>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={itemsPerRow}>
           {foods && foods.length && foods.map((food) => <Card color='red'>
             {(() => {
               try {

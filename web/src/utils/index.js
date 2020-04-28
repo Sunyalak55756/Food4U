@@ -13,3 +13,11 @@ export const getToken = () => {
 export const removeToken = () => {
   return localStorage.removeItem('_token')
 }
+
+export const setUser = (data) => {
+  return localStorage.setItem('user', data)
+}
+
+export const getUser = () => {
+  return localStorage.getItem('user')
+}
