@@ -17,7 +17,7 @@ const Foods = () => {
   const [foods, setFoods] = useState({})
   const [user, setUser] = useState({})
   useEffect(() => {
-    axios.get('http://f2fa71ae.ngrok.io/api/foods',
+    axios.get(`${conf}/foods`,
       {
         headers: {
           'Content-Type': 'application/json',

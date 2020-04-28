@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const [
     { data, loading }, executePost] = useAxios(
       {
-        url: 'http://f2fa71ae.ngrok.io/api/register',
+        url: `${conf}/register`,
         method: 'POST'
       }
     )

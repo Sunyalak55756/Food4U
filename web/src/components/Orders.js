@@ -10,13 +10,14 @@ import {
 import axios from 'axios'
 import { getToken } from '../utils'
 import './Orders.css'
+import conf from '../config'
 
 const Orders = () => {
   const [cart, setCart] = useState([])
   const [orders, setOrders] = useState({})
   const [user, setUser] = useState({})
   useEffect(() => {
-    axios.get('http://f2fa71ae.ngrok.io/api/orders',
+    axios.get(`${conf}/orders`,
       {
         headers: {
           'Content-Type': 'application/json',
