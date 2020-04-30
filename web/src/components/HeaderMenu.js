@@ -6,7 +6,7 @@ import {
   Modal,
 } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
-import { removeToken, getUser } from '../utils'
+import { removeToken, getUser, removeUser } from '../utils'
 import ModalCart from './ModalCart'
 
 const HeaderMenu = ({ cart }) => {
@@ -17,6 +17,7 @@ const HeaderMenu = ({ cart }) => {
   const history = useHistory()
   const _logout = () => {
     removeToken()
+    removeUser()
     history.push('/')
   }
   return (
@@ -26,7 +27,7 @@ const HeaderMenu = ({ cart }) => {
           <Menu.Item onClick={() => history.push('/')}>อาหาร</Menu.Item>
           <Menu.Item onClick={() => history.push('/orders')}>ประวัติ</Menu.Item>
           <Menu.Menu position='right'>
-            <Menu.Item>{user.user_name}</Menu.Item>
+            <Menu.Item>{user?.user_name || 'name'}</Menu.Item>
             <Modal trigger={<Menu.Item>
               <Icon name='shopping cart' size='small' />
               {cart.length && cart.map(n => n.number).reduce((a, b) => a + b, 0)}

@@ -21,3 +21,7 @@ export const setUser = (data) => {
 export const getUser = () => {
   return localStorage.getItem('user')
 }
+
+export const removeUser= () => {
+  return localStorage.removeItem('user')
+}
