@@ -45,7 +45,7 @@ const Foods = () => {
   const orderCart = (food) => {
     const order = { ...food }
     if (order.number > 0) {
-      setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price * order.number }])
+      setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price }])
       food.number = 0
       setFoods([...foods, food])
     }
