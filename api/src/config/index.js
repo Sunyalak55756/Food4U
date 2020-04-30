@@ -6,8 +6,8 @@ const env = {
   saltBcrypt: 10,
   database: 'food4u',
   username: 'root',
-  password: '',
-  host: 'localhost',
+  password: 'Mycf37#fc9222&dd8d493a',
+  host: '157.230.243.171',
   dialect: 'mysql',
   pool: {
     max: 5,
