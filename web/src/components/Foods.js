@@ -27,27 +27,45 @@ const Foods = () => {
       }).then(res => setFoods(res.data))
   }, [])
   const _minus = (food) => {
+    let number = 0
     if (!food.number) {
-      food.number = 0
+      number = 0
     } else {
-      food.number--
+      number = food.number
+      number--
     }
-    setFoods([...foods, food])
+    const foodsT = foods.map((foodtmp) => {
+      if (foodtmp.id === food.id)
+        foodtmp.number = number
+      return foodtmp
+    })
+    setFoods(foodsT)
   }
   const _plus = (food) => {
+    let number = 1
     if (!food.number) {
-      food.number = 1
+      number = 1
     } else {
-      food.number++
+      number = food.number
+      number++
     }
-    setFoods([...foods, food])
+    const foodsT = foods.map((foodtmp) => {
+      if (foodtmp.id === food.id)
+        foodtmp.number = number
+      return foodtmp
+    })
+    setFoods(foodsT)
   }
   const orderCart = (food) => {
     const order = { ...food }
     if (order.number > 0) {
       setCart([...cart, { img: order.img, number: order.number, name: order.name, foods_id: order.id, price: order.price }])
-      food.number = 0
-      setFoods([...foods, food])
+      const foodsT = foods.map((foodtmp) => {
+        if (foodtmp.id === food.id)
+          foodtmp.number = 0
+        return foodtmp
+      })
+      setFoods(foodsT)
     }
   }
   let itemsPerRow = 4
@@ -60,7 +78,6 @@ const Foods = () => {
   } else if (document.body.clientWidth < 351) {
     itemsPerRow = 1
   }
-  console.log(document.body.clientWidth)
   return (
     <div>
       <HeaderMenu cart={cart} />
